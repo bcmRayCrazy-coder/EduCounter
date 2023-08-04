@@ -1,0 +1,23 @@
+{
+    "name": "educounter",
+    "version": "1.0.0",
+    "description": "et available edu account from Codemao",
+    "main": "dist/main.js",
+    "repository": "https://github.com/bcmRayCrazy-coder/EduCounter.git",
+    "author": "bcm-ray_crazy <65066644+bcmRayCrazy-coder@users.noreply.github.com>",
+    "license": "GNU",
+    "scripts": {
+        "lint": "prettier --write .",
+        "build": "tsc",
+        "dev": "ts-node src/main.ts"
+    },
+    "devDependencies": {
+        "prettier": "^3.0.1",
+        "ts-node": "^10.9.1",
+        "typescript": "^5.1.6"
+    },
+    "dependencies": {
+        "axios": "^1.4.0",
+        "chalk": "4"
+    }
+}
