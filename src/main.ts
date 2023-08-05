@@ -2,6 +2,7 @@ import chalk from 'chalk';
 import { program } from 'commander';
 import { logger } from './Logger';
 import configure, { config } from './config';
+import findAccount from './account/account';
 
 console.log(chalk.bold.hex('#9200db')('~开号机~'));
 
@@ -16,6 +17,7 @@ program
     .option('-n, --find-number <num>', '找几次停止')
     .option('-an, --available-number <anum>', '找到多少个可用号后停止')
     .option('-p, --password <pwd>', '寻找账号的密码')
+    .option('-o, --out-file <path>', '输出文件')
 
     .parse();
 
@@ -29,6 +31,7 @@ if (args.mute) {
 async function main() {
     await configure(args);
     logger.tip('配置', JSON.stringify(config));
+    await findAccount();
 
     logger.setMute(false);
     logger.success('完成!');
