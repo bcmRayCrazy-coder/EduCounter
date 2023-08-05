@@ -17,6 +17,7 @@ program
     .option('-n, --find-number <num>', '找几次停止')
     .option('-an, --available-number <anum>', '找到多少个可用号后停止')
     .option('-p, --password <pwd>', '寻找账号的密码')
+    .option('-a, --async-number <num>', '一次寻找几个账号')
     .option('-o, --out-file <path>', '输出文件')
 
     .parse();

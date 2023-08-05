@@ -8,6 +8,7 @@ export interface Config {
     availableNumber: number;
     password: string;
     outFile: string;
+    asyncNumber: number;
 }
 
 export let config: Config = {
@@ -16,6 +17,7 @@ export let config: Config = {
     availableNumber: 0,
     password: '',
     outFile: '',
+    asyncNumber: 0,
 };
 
 async function ask(message: string, initial?: string): Promise<string> {
@@ -58,8 +60,12 @@ export default async function configure(args: OptionValues) {
 
     if (!args.outFile) {
         // config.password = await ask('输出文件');
-
         logger.error('请设置outFile');
         process.exit(1);
     } else config.outFile = args.outFile;
+
+    if (!args.asyncNumber) {
+        logger.error('请设置asyncNunber');
+        process.exit(1);
+    } else config.asyncNumber = args.asyncNumber;
 }
